@@ -1,0 +1,78 @@
+<?php require_once 'session_helper.php'; ?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="/css/my-style.css" rel="stylesheet">
+    <link href="/css/my-new-style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/custom.css">
+
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+          rel = "stylesheet">
+
+    <title>Project X - <?php echo $view->pageTitle; ?></title>
+</head>
+
+<body role=""document">
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand text-light" href="index.php">Project X</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- check if user logged in -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <?php if(isLoggedIn()) : ?>
+                    <li class="nav-item"><a class="nav-link text-light" href="/desktop.php">Desktop</a></li>
+                <?php endif ?>
+            </ul>
+
+            <ul class="navbar-nav mt-2 mt-md-0">
+                <li class="nav-item">
+                    <?php if(isLoggedIn()) : ?>
+                    <a class="nav-link text-light" href="profile.php"><span class="glyphicon glyphicon-user"></span> My Account</a></li>
+                    <?php else : ?>
+                    <a class="nav-link text-light" href="register.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a>
+                    <?php endif; ?>
+                </li>
+                <li class="nav-item">
+                    <?php if(isLoggedIn()) : ?>
+                    <a class="nav-link text-light" href="logout_index.php"><span class="glyphicon glyphicon-log-in"></span> Logout</a>
+                    <?php else : ?>
+                    <a class="nav-link text-light" href="login.php"><span class="glyphicon glyphicon-log-in"></span> Login</a>
+                    <?php endif; ?>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+        <div class="row">
+            <div id="title" class="col-4">
+                <a href="/"><img src="images/project-x-logo.png" alt="Project X" width="170" height="76"/></a>
+            </div>
+            <div class="col-8">
+                <h1 class="float-right pt-4 pr-3"><?php echo $view->pageTitle ?> </h1>
+            </div>
+        </div>
+
+    <div id="content" class="col-xs-12">
+
+
+

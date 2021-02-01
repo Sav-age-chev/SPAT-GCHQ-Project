@@ -1,0 +1,14 @@
+<?php if ($index == 0) : ?>
+<div class="card mt-1 mx-0 email-card" email-id="<?php echo $email->getID() ?>" data-bs-toggle="tooltip" data-bs-placement="right" guide-step="1"
+     title="<h4>Step 1</h3><p>Select an email to review</p><button class='btn btn-link text-reset' name='tutorial-1' skip>skip tutotiral</button>">
+<?php else : ?>
+    <div class="card mt-1 mx-0 email-card" email-id="<?php echo $email->getID() ?>">
+<?php endif ?>
+    <div class='card-header text-truncate'>
+        <p class="my-0"><?php echo substr($email->getFromName(), 0, 100) ?></p>
+    </div>
+    <div class='card-body py-0'>
+        <p class="text-truncate my-0"><?php echo substr(filter_var($email->getSubject(), FILTER_SANITIZE_FULL_SPECIAL_CHARS), 0, 100) ?></p>
+        <p class="text-truncate my-0"><?php echo substr(strip_tags ($email->getBody()), 0, 200) ?></p>
+    </div>
+</div>

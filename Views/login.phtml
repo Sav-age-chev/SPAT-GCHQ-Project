@@ -1,0 +1,23 @@
+<?php require('template/header.phtml') ?>
+
+    <div class="login">
+        <h1>Login</h1>
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+
+            <input type="text" name="email" placeholder="Email">
+            <span class="invalidFeedback">
+                <?php echo $view->users['emailError']; ?>
+            </span>
+
+            <input type="password" name="password" placeholder="Password">
+            <span class="invalidFeedback">
+                <?php echo $view->users['passwordError']; ?>
+            </span>
+
+            <input type="submit" value="Login">
+
+            <p class="option">Not registered yet? <a href="register.php">Sign Up</a></p>
+        </form>
+    </div>
+
+<?php require('template/footer.phtml') ?>

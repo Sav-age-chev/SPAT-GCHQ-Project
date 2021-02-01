@@ -1,0 +1,128 @@
+<?php require('template/header.phtml');?>
+
+</div>
+
+<div class="container-md bg-light border shadow my-5" id="email-client">
+    <div class="row">
+        <div class="col-4 bg-dark py-1">
+            <span class="text-light">EMails Checked: <span id="answer-count">0</span>/<span id="email-count">0</span></span>
+        </div>
+        <div class="col-4 bg-dark py-1">
+            <form action="/email.php" method="post">
+                <button type="submit" class="btn btn-secondary" name="submit" value="true" id="answer-submit" disabled="true" data-bs-toggle="tooltip"
+                        title="<h3>Step 4</h3><p>Once you have provided an answer to all of the emails, press Submit Answers to see how you did.</p><button class='btn btn-info' type='button' id='guide-4-next'>Let's go!</button>">Submit Answers</button>
+            </form>
+        </div>
+        <div class="col-4 bg-dark py-1">
+            <button class="btn btn-secondary float-right" type="submit" name="reset" value="true" id="answer-reset">Reset Answers</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-sm-4 p-0" id="email-list">
+            <?php
+                // Create a card for each of the emails in the database.
+                // TODO: Create API end point so these can be loaded dynamically
+                $index = 0;
+                foreach ($view->emails as $email) {
+                    include 'Views/email_card.phtml';
+                    $index++;
+                }
+            ?>
+        </div>
+        <div class="col col-sm-8">
+            <div class="row">
+                <div class="col col-12 bg-white" id="email-content" data-bs-toggle="tooltip"
+                     title="<h3>Step 2</h3><p>Hover over words, images and links in the email to get hints that will guide you through identifying phishing emails.</p><button class='btn btn-info' type='button' id='guide-2-next' name='tutorial-2'>Next</button><button class='btn btn-link text-reset' name='tutorial-2' skip>skip tutorial</button">
+                    <div class="pb-3" id="email-header">
+                        <h5>From:
+                            <span id="selected-from-name"></span>
+                            &lt;<span id="selected-from"></span>&gt;
+                        </h5>
+                        <h5>Subject: <span id="selected-subject"></span></h5>
+                    </div>
+                    <div id="email-body"><p class="text-center">Select an email to start</p></div>
+                </div>
+                <div class="col col-12">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <div clas="row" data-bs-toggle="tooltip">
+                                    <form class="form-inline" id="answer-form" style="display: none" guide-step="3"
+                                          title="<h3>Step 3</h3><p>After reviewing the email, make a decision, is it a real email or is it phishing for information?</p><button class='btn btn-info' type='button' id='guide-3-next' name='tutorial-3'>Next</button><button class='btn btn-link text-reset' name='tutorial-3' skip>skip tutorial</button>">
+                                        <div class="col col-6">
+                                            <input type="radio" class="btn-check form-control" name="answer" value="real" id="radio-real" autocomplete="off" checked>
+                                            <label class="btn btn-outline-success btn-lg" for="radio-real" id="radio-real-label">Real</label>
+                                        </div>
+                                        <div class="col-6">
+                                            <input type="radio" class="btn-check form-control" name="answer" value="phishing" id="radio-phishing" autocomplete="off">
+                                            <label class="btn btn-outline-danger btn-lg" for="radio-phishing" id="radio-phishing-label">Phishing</label>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12" id="status">&nbsp;</div>
+    </div>
+</div>
+
+<div class="container-fluid padding">
+    <div class="row padding">
+        <div class="col-lg-6">
+            <h2>Phishing</h2>
+            <p>Phishing is when scammers attempt to mislead users into clicking a bad link that will download malware or direct them to a dodgy website. They do this by hiding behind legit/original companies like Amazon, eBay, DVLA, Sky, etc.</p>
+            <p>Phishing can be conducted via a text message, social media, or by phone, but the term 'phishing' is mainly used to describe attacks that arrive by email. Phishing emails can reach millions of users directly and hide amongst the huge number of benign emails that busy users receive. Attacks can install malware (such as ransomware), sabotage systems, or steal intellectual property and money.</p>
+            <p>Phishing emails can hit an organization of any size and type. You might get caught up in a mass campaign (where the attacker is just looking to collect some new passwords or make some easy money), or it could be the first step in a targeted attack against your company, where the aim could be something much more specific, like the theft of sensitive data. In a targeted campaign, the attacker may use information about your employees or company to make their messages even more persuasive and realistic. This is usually referred to as spear phishing.</p>
+            <br>
+        </div>
+        <div class="col-lg-6">
+            <figure>
+                <img src="images/email1.jpg" alt="IMAGE 1" class="img-fluid">
+                <figcaption>Photo by <a class="text-reset" href="https://unsplash.com/@hostreviews?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Stephen Phillips - Hostreviews.co.uk</a> on <a class="text-reset" href="https://unsplash.com/s/photos/spam?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></figcaption>
+            </figure>
+        </div>
+    </div>
+</div>
+
+<hr class="my-4">
+
+<div class="container-fluid padding">
+    <div class="row padding">
+        <div class="col-lg-6">
+            <figure>
+                <img src="images/email2.jpg" alt="IMAGE 2" class="img-fluid">
+                <figcaption>Photo by <a class="text-reset" href="https://unsplash.com/@gurysimrat?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Gursimrat Ganda</a> on <a class="text-reset" href="https://unsplash.com/s/photos/hacking?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></figcaption>
+            </figure>
+        </div>
+        <div class="col-lg-6">
+            <h2>Spear Phishing</h2>
+            <p>Spear phishing is a scam that is targeted towards a specific individual, organization, or business. Using similar tactics as phishing scammers often intended to steal data for malicious purposes, cybercriminals may also intend to install malware on a targeted user’s computer.</p>
+            <p>Many times, government-sponsored hackers and hacktivists are behind these attacks. Cybercriminals do the same intending to resell confidential data to governments and private companies. These cybercriminals employ individually designed approaches and social engineering techniques to effectively personalize messages and websites.</p>
+        </div>
+    </div>
+</div>
+
+<hr class="my-4">
+
+<div class="container-fluid padding">
+    <div class="row padding">
+        <div class="col-lg-6">
+            <h2>Whale Phishing</h2>
+            <p>A whaling attack (Whale Phishing) is a method used by cybercriminals to masquerade as a senior member of an organization and directly target senior or other important individuals at that organization, to steal money or sensitive information or gain access to their computer systems. This is also known as CEO fraud.</p>
+            <p>whaling uses similar techniques as phishing but whereas phishing scams target non-specific individuals and spear-phishing targets particular individuals, whaling doubles down on the latter by not only targeting those key individuals but doing so in a way that the fraudulent communications they are sent appear to have come from someone specifically senior or influential at their organization. Think of them as "big phish" or "whales" at the company, such as the CEO or finance manager.</p>
+        </div>
+        <div class="col-lg-6">
+            <figure>
+                <img src="images/email3.jpg" alt="IMAGE 3" class="img-fluid">
+                <figcaption>Photo by <a class="text-reset" href="https://unsplash.com/@austindistel?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Austin Distel</a> on <a class="text-reset" href="https://unsplash.com/s/photos/hacking?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></figcaption>
+            </figure>
+        </div>
+    </div>
+</div>
+
+<?php require('template/footer.phtml') ?>
